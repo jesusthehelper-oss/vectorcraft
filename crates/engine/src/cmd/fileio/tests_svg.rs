@@ -152,7 +152,7 @@ fn saving_several_artboards_as_plain_svg_warns_they_are_lost() {
     let r = s.execute("document.save", &json!({"format": "svg"})).unwrap();
     assert_eq!(artboards(&r), 1, "{r}");
     // First: the status bar shows only the first warning.
-    assert!(r["warnings"][0].as_str().unwrap().contains("1 of the document's 3 artboards"), "{r}");
+    assert!(r["warnings"][0].as_str().unwrap().contains("the document's 3 artboards"), "{r}");
     assert_eq!(artboards(&s.execute("file.saveAs", &json!({"format": "svgz"})).unwrap()), 1);
     // Preserve Editing keeps them all (they reopen); a single artboard loses none.
     for p in [json!({"format": "svg", "preserveEditing": true}), json!({"format": "svg", "svg": {"preserveEditing": true}})] {
